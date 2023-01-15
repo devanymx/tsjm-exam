@@ -58,4 +58,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /*
+     *
+     * Add relation of the answers of the user in the exam
+     * */
+    public function questionAnswers(){
+        return $this->belongsToMany(QuestionAnswer::class);
+    }
+
+    public function teams(){
+        return $this->belongsToMany(Team::class);
+    }
 }

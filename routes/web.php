@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\QuestionAnswer;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
+});
+
+Route::get('/try', function () {
+
+    $answers = QuestionAnswer::all()->unique('question_id')->random(100);
+
+    dd($answers[2]);
+
 });
 
 Route::middleware([
