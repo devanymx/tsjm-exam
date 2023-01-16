@@ -67,7 +67,11 @@ class User extends Authenticatable
         return $this->belongsToMany(QuestionAnswer::class);
     }
 
-    public function teams(){
-        return $this->belongsToMany(Team::class);
+    public function exam(){
+        return $this->hasOne(UserExam::class);
+    }
+
+    public function hasDoneExam(){
+        return true;
     }
 }

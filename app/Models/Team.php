@@ -42,8 +42,4 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
 }
