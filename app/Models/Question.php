@@ -16,6 +16,14 @@ class Question extends Model
     ];
 
     public function questionAnswers(){
-        return $this->hasMany(QuestionAnswer::class)->distinct();
+        return $this->hasMany(QuestionAnswer::class);
+    }
+
+    public function answers(){
+        return $this->hasMany(QuestionAnswer::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 }

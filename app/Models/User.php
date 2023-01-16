@@ -64,11 +64,15 @@ class User extends Authenticatable
      * Add relation of the answers of the user in the exam
      * */
     public function questionAnswers(){
-        return $this->belongsToMany(QuestionAnswer::class);
+        return $this->belongsToMany(QuestionAnswer::class)->withPivot('validity','question_id');
     }
 
     public function exam(){
         return $this->hasOne(UserExam::class);
+    }
+
+    public function questions(){
+        return $this->belongsToMany(Question::class);
     }
 
     public function hasDoneExam(){

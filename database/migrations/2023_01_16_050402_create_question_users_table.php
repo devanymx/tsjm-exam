@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_exams', function (Blueprint $table) {
+        Schema::create('question_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('question_id')->references('id')->on('question_answers');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->timestamp('finished_at')->nullable(true);
-            $table->timestamp('started_at')->nullable(true);
-            $table->time('time')->nullable(true);
-            $table->double('score')->nullable(true);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_exams');
+        Schema::dropIfExists('question_users');
     }
 };

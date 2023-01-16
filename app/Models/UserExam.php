@@ -9,6 +9,14 @@ class UserExam extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'finished_at',
+        'started_at',
+        'time',
+        'score',
+    ];
+
     public function user(){
         return $this->belongsTo(UserExam::class);
     }

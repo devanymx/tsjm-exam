@@ -48,12 +48,11 @@ class JetstreamServiceProvider extends ServiceProvider
         Jetstream::role('admin', 'Administrador', [
             //Perms to show dashboard
             'dashboard.show.table',
-
+            'dashboard',
             'create',
             'read',
             'update',
-            'delete',
-            'dashboard'
+            'delete'
         ])->description('Administradores pueden realizar cualquier acción.');
 
         Jetstream::role('user','Usuario', [
