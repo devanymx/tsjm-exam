@@ -20,8 +20,10 @@ class ExamController extends Controller
         $token = $this->checkPermissions('exam.show');
         if (!$token) return redirect()->route('forbidden');
 
-        if ($user->exam->score != null){
-            return redirect()->route('exam.getFinished');
+        if ($user->exam){
+            if ($user->exam->score != null){
+                return redirect()->route('exam.getFinished');
+            }
         }
 
         return view('exam.show',[
@@ -147,7 +149,7 @@ class ExamController extends Controller
         $user = $exam->user;
         $user = User::find($user->user_id);
 
-        return view('exam.finished', [
+        return view('exam.verify', [
             'user' => $user,
             'exam' => $exam,
             'url' => $url
