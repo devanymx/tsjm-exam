@@ -39,7 +39,7 @@ class ExamController extends Controller
         $token = $this->checkPermissions('exam.start');
         if (!$token) return redirect()->route('forbidden');
 
-        if (!$user->questions){
+        if (count($user->questions) < 1){
             $questions = Question::all()->random(100);
             $user->questions()->saveMany($questions);
         }
