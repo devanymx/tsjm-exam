@@ -44,9 +44,11 @@
                                         $classes = '';
 
                                         if ($user->exam ){
-                                            $classes .= $user->exam->score >= 80 ? 'bg-emerald-100' : '';
-                                            $classes .= $user->exam->score >= 60 && $user->exam->score <= 79 ? 'bg-amber-100' : '';
-                                            $classes .= $user->exam->score >= 0 && $user->exam->score <= 59 ? 'bg-red-100' : '';
+                                            if ($user->exam->user){
+                                                $classes .= $user->exam->score >= 80 ? 'bg-emerald-100' : '';
+                                                $classes .= $user->exam->score >= 60 && $user->exam->score <= 79 ? 'bg-amber-100' : '';
+                                                $classes .= $user->exam->score >= 0 && $user->exam->score <= 59 ? 'bg-red-100' : '';
+                                            }
                                         }else{
                                             $classes .= 'bg-slate-200';
                                         }
@@ -75,32 +77,34 @@
                                                         </p>
                                                     </div>
                                                     @if($user->exam)
-                                                        <div class="md:block">
-                                                            <div>
-                                                                <p class="text-sm text-gray-900 flex">
-                                                                    <svg
-                                                                        class="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        viewBox="0 0 20 20" fill="currentColor"
-                                                                        aria-hidden="true">
-                                                                        <path fill-rule="evenodd"
-                                                                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                                                                              clip-rule="evenodd"/>
-                                                                    </svg>
-                                                                    &nbsp;
-                                                                    Examen terminado en:
-                                                                </p>
-                                                                <p class="flex items-center text-sm text-gray-500">
-                                                                    {{$user->exam->time}} horas
-                                                                </p>
-                                                                <p class="flex items-center text-sm text-gray-500">
-                                                                    Finalizado el: {{$user->exam->finished_at}}
-                                                                </p>
-                                                                <p class="flex items-center text-sm text-gray-500">
-                                                                    Calificación: {{$user->exam->score / 10}}
-                                                                </p>
+                                                        @if($user->exam->score)
+                                                            <div class="md:block">
+                                                                <div>
+                                                                    <p class="text-sm text-gray-900 flex">
+                                                                        <svg
+                                                                            class="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 20 20" fill="currentColor"
+                                                                            aria-hidden="true">
+                                                                            <path fill-rule="evenodd"
+                                                                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                                                                  clip-rule="evenodd"/>
+                                                                        </svg>
+                                                                        &nbsp;
+                                                                        Examen terminado en:
+                                                                    </p>
+                                                                    <p class="flex items-center text-sm text-gray-500">
+                                                                        {{$user->exam->time}} horas
+                                                                    </p>
+                                                                    <p class="flex items-center text-sm text-gray-500">
+                                                                        Finalizado el: {{$user->exam->finished_at}}
+                                                                    </p>
+                                                                    <p class="flex items-center text-sm text-gray-500">
+                                                                        Calificación: {{$user->exam->score / 10}}
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
                                                     @endif
                                                 </div>
                                             </div>
