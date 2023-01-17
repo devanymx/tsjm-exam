@@ -50,7 +50,7 @@ class ExamController extends Controller
             $user->exam()->save($exam);
         }
 
-        return redirect()->route('exam.answer', ['paginate' => 1]);
+        return redirect()->route('exam.answer', ['page' => 0]);
 
     }
 
@@ -61,7 +61,11 @@ class ExamController extends Controller
         if (!$token) return redirect()->route('forbidden');
 
         $page = $request->query('page');
-        if ($page == null) $page = 1;
+        $divisor = $page;
+        if ($page == 0) {$page = 1; $divisor = 0;}
+        else{
+            $divisor -= 1;
+        }
 
         $userQuestions = $user->questions()->paginate(10);
 
@@ -69,6 +73,7 @@ class ExamController extends Controller
             return view('exam.confirm_finish',[
                 'questions' => $userQuestions,
                 'user' => $user,
+                'divisor' => $divisor,
                 'page' => $page
             ]);
         }
@@ -76,6 +81,7 @@ class ExamController extends Controller
         return view('exam.answer',[
             'questions' => $userQuestions,
             'user' => $user,
+            'divisor' => $divisor,
             'page' => $page
         ]);
     }
@@ -146,8 +152,7 @@ class ExamController extends Controller
 
         $exam = UserExam::where('uuid',$uuid)->with('user')->first();
         $url = $_ENV['APP_URL'].'/verify/'.$uuid;
-        $user = $exam->user;
-        $user = User::find($user->user_id);
+        $user = User::find($exam->user_id);
 
         return view('exam.verify', [
             'user' => $user,
