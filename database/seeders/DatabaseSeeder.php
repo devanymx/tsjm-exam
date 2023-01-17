@@ -24,9 +24,7 @@ class DatabaseSeeder extends Seeder
             QuestionAnswer::factory(4)
         )->create();
 
-        $answers = QuestionAnswer::all()->unique('question_id')->random(100);
         $user = User::factory()->create(['email' => 'edreiccb@gmail.com']);
-        $user->questionAnswers()->attach($answers);
         //Create base team
         $team = Team::factory()->create(['name' => 'Users', 'personal_team' => false, 'user_id' => $user->id]);
         $user->current_team_id = $team->id;
@@ -35,11 +33,15 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create();
         $user->current_team_id = $team->id;
         $user->save();
-        
         $user = User::factory()->create();
         $user->current_team_id = $team->id;
         $user->save();
-        
+        $user = User::factory()->create();
+        $user->current_team_id = $team->id;
+        $user->save();
+        $user = User::factory()->create();
+        $user->current_team_id = $team->id;
+        $user->save();
         $user = User::factory()->create();
         $user->current_team_id = $team->id;
         $user->save();
