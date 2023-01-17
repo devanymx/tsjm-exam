@@ -43,11 +43,14 @@
                                     @php
                                         $classes = '';
 
-                                        if ($user->exam ){
+                                        if ($user->exam){
                                             if ($user->exam->user){
                                                 $classes .= $user->exam->score >= 80 ? 'bg-emerald-100' : '';
                                                 $classes .= $user->exam->score >= 60 && $user->exam->score <= 79 ? 'bg-amber-100' : '';
                                                 $classes .= $user->exam->score >= 0 && $user->exam->score <= 59 ? 'bg-red-100' : '';
+                                                $classes .= $user->exam->score == null ? 'bg-slate-200' : '';
+                                            }else{
+                                                $classes .= 'bg-slate-200';
                                             }
                                         }else{
                                             $classes .= 'bg-slate-200';
