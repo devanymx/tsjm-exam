@@ -19,11 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        Question::factory(300)->has(
-            QuestionAnswer::factory(4)
-        )->create();
-
         $user = User::factory()->create(['email' => 'edreiccb@gmail.com']);
         //Create base team
         $team = Team::factory()->create(['name' => 'Users', 'personal_team' => false, 'user_id' => $user->id]);
@@ -55,5 +50,9 @@ class DatabaseSeeder extends Seeder
         $user->save();
         $user->teams()->attach($team, ['role' => 'user']);
 
+        $user = User::factory()->create();
+        $user->current_team_id = $team->id;
+        $user->save();
+        $user->teams()->attach($team, ['role' => 'user']);
     }
 }

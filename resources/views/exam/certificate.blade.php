@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             ¡Has finalizado!
@@ -26,7 +26,7 @@
                         ¡Felicidades {{$user->name}}, has finalizado tu examen!
                     </div>
                     <div class="flex mt-28 justify-center text-sm font-extrabold">
-                        Este examen está cifrado.
+                        Este examen está cifrado bajo una llave de dos partes, solamente tú y la persona con quien lo compartas tendrán acceso a tu calificación.
                     </div>
                     <div class="flex justify-center text-sm font-extrabold">
                         Para verificar la veracidad de este certificado, escanea el código QR o ingresa al enlace:
@@ -38,4 +38,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

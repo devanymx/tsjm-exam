@@ -6,6 +6,7 @@ use App\Models\Question;
 use App\Models\QuestionAnswer;
 use App\Models\User;
 use App\Models\UserExam;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,11 +79,17 @@ class ExamController extends Controller
             ]);
         }
 
+        $date = new Carbon($user->exam->started_at);
+        $finishDate = $date->addMinutes(180);
+        $shouldFinish = $finishDate->diffInMinutes(Carbon::now(),false);
+
+
         return view('exam.answer',[
             'questions' => $userQuestions,
             'user' => $user,
             'divisor' => $divisor,
-            'page' => $page
+            'page' => $page,
+            'finishDate' => $finishDate->format('Y-m-d H:i:s')
         ]);
     }
 
@@ -159,6 +166,23 @@ class ExamController extends Controller
             'exam' => $exam,
             'url' => $url
         ]);
+    }
+
+    public function downloadCertificate($uuid){
+
+        $exam = UserExam::where('uuid',$uuid)->with('user')->first();
+        $url = $_ENV['APP_URL'].'/verify/'.$uuid;
+        $user = User::find($exam->user_id);
+
+        $data = [
+            'user' => $user,
+            'exam' => $exam,
+            'url' => $url
+        ];
+
+        $pdf = PDF::loadView('exam.certificate', $data);
+
+        return $pdf->download('Certificado de '.$user->name.'.pdf');
     }
 
     public function checkPermissions($permission){

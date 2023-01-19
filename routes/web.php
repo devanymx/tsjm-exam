@@ -27,6 +27,13 @@ Route::get('/forbidden', [PublicController::class, 'defaultTemplate'])->name('fo
 
 //Verify
 Route::get('/verify/{uuid}',[ExamController::class,'verifyExam'])->name('exam.verify');
+Route::get('/exam/download/{uuid}',[ExamController::class,'downloadCertificate'])->name('exam.download');
+
+Route::get('/answers-import',[PublicController::class, 'importViewa'])->name('import-view-a');
+Route::get('/questions-import',[PublicController::class, 'importViewq'])->name('import-view-q');
+Route::post('/a-import',[PublicController::class, 'importa'])->name('import-a');
+Route::post('/q-import',[PublicController::class, 'importq'])->name('import-q');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -41,7 +48,7 @@ Route::middleware([
     Route::post('/exam/start', [ExamController::class,'startExam'])->name('exam.start');
     Route::get('/exam/answer', [ExamController::class,'answerExam'])->name('exam.answer');
     Route::post('/exam/answer/questions', [ExamController::class,'answerQuestions'])->name('exam.answer.questions');
-    Route::post('/exam/finished', [ExamController::class,'finishedExam'])->name('exam.finished');
+    Route::get('/exam/finished', [ExamController::class,'finishedExam'])->name('exam.finished');
     Route::get('/exam/end', [ExamController::class,'getFinished'])->name('exam.getFinished');
 
 });

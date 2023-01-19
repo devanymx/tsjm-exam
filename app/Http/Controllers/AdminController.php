@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Models\User;
 use Doctrine\DBAL\Driver\Middleware\AbstractConnectionMiddleware;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\Jetstream;
@@ -23,12 +24,13 @@ class AdminController extends Controller
         if (!$token) return redirect()->route('forbidden');
 
         $team = Team::find(1);
-        $users = $team->users;
+        $users = $team->users()->paginate(4);
 
         //Check if the table has filters
         $filters = false;
         $isActiveFilters = $request->query('filter');
         if ($isActiveFilters) {
+            $users = $team->users;
             $filters = true;
             $users = $this->filterData($users,$request);
         }
@@ -65,7 +67,7 @@ class AdminController extends Controller
     }
 
     private function filterScore($users, $filterKey, $request){
-        $filteredUsers = [];
+        $filteredUsers = new Collection();
         foreach ($users as $user){
             if ($user->exam){
                 if ($request->query($filterKey) == 'excellent'){

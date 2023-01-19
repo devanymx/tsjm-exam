@@ -78,4 +78,8 @@ class User extends Authenticatable
     public function hasDoneExam(){
         return true;
     }
+
+    public function profile_photo_url(){
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=fff&background=9b012a';
+    }
 }

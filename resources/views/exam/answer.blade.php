@@ -1,8 +1,38 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Realiza tu examen aquí
+            Examen de oposición para Juez de primera instancia - <span id="demo"></span>
         </h2>
+        <script>
+            // Set the date we're counting down to
+            let countDownDate = new Date('{{$finishDate}}').getTime();
+            // Update the count-down every 1 second
+            const x = setInterval(function() {
+
+                // Get today's date and time
+                let now = new Date().getTime();
+
+                // Find the distance between now and the count-down date
+                let distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+                // If the count-down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    window.location.href = "/exam/finished";
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        </script>
     </x-slot>
 
     <div class="py-12 h-full">
@@ -10,7 +40,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form action="{{route('exam.answer.questions')}}" method="post">
                     @csrf
-                    <input type="text" class="sr-only" value="{{$page}}" name="page" id="page">
+                    <label for="page"></label><input type="text" class="sr-only" value="{{$page}}" name="page" id="page">
                     @foreach($questions as $question)
                         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                             <label class="text-base font-medium text-gray-900"><span class="text-xl font-bold">{{($loop->iteration) + ($divisor * 10)}}.- </span>{{$question->question}}</label>

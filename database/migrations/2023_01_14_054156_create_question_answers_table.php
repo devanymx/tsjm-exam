@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('question_answers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('answer');
+            $table->longText('name');
+            $table->longText('answer');
             $table->string('slug')->nullable(true);
             $table->integer('validity')->comment('1=correct answer')->default('0');
             $table->foreignId('question_id')->references('id')->on('questions');

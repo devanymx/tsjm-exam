@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\AnswersImport;
+use App\Imports\QuestionsImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PublicController extends Controller
 {
@@ -22,4 +25,25 @@ class PublicController extends Controller
         return view('errors.forbidden');
 
     }
+
+    public function importViewa(Request $request){
+        return view('import');
+    }
+
+    public function importa(Request $request){
+        Excel::import(new AnswersImport(),
+            $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
+    public function importViewq(Request $request){
+        return view('importq');
+    }
+
+    public function importq(Request $request){
+        Excel::import(new QuestionsImport(),
+            $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
 }
