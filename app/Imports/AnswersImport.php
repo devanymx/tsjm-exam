@@ -23,28 +23,28 @@ class AnswersImport implements ToCollection
             QuestionAnswer::create([
                 'name' => $row[1],
                 'answer' => $row[1],
-                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[1]), 0, 5)), '-'),
+                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[1]), 0, 10)).$row[7], '-'),
                 'validity' => (bool)random_int(0, 1),
                 'question_id' => $row[7],
             ]);
             QuestionAnswer::create([
                 'name' => $row[2],
                 'answer' => $row[2],
-                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[2]), 0, 5)), '-'),
+                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[2]), 0, 10)).$row[7], '-'),
                 'validity' => (bool)random_int(0, 1),
                 'question_id' => $row[7],
             ]);
             QuestionAnswer::create([
                 'name' => $row[3],
                 'answer' => $row[3],
-                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[3]), 0, 5)), '-'),
+                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[3]), 0, 10)).$row[7], '-'),
                 'validity' => (bool)random_int(0, 1),
                 'question_id' => $row[7],
             ]);
             QuestionAnswer::create([
                 'name' => $row[4],
                 'answer' => $row[4],
-                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[4]), 0, 5)), '-'),
+                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[4]), 0, 10)).$row[7], '-'),
                 'validity' => (bool)random_int(0, 1),
                 'question_id' => $row[7],
             ]);
