@@ -26,7 +26,7 @@
                         ¡Felicidades {{$user->name}}, has finalizado tu examen!
                     </div>
                     <div class="flex mt-28 justify-center text-sm font-extrabold">
-                        Este examen está cifrado bajo una llave.
+                        Este examen está cifrado.
                     </div>
                     <div class="flex justify-center text-sm font-extrabold">
                         Para verificar la veracidad de este certificado, escanea el código QR o ingresa al enlace:
