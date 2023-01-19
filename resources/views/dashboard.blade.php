@@ -44,7 +44,7 @@
                                         $classes = '';
 
                                         if ($user->exam){
-                                            if ($user->exam->user){
+                                            if ($user->exam->score){
                                                 $classes .= $user->exam->score >= 80 ? 'bg-emerald-100' : '';
                                                 $classes .= $user->exam->score >= 60 && $user->exam->score <= 79 ? 'bg-amber-100' : '';
                                                 $classes .= $user->exam->score >= 0 && $user->exam->score <= 59 ? 'bg-red-100' : '';

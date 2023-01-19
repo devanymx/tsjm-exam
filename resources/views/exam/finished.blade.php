@@ -26,6 +26,10 @@
                         ¡Felicidades {{$user->name}}, has finalizado tu examen!
                     </div>
                     <div class="flex mt-28 justify-center text-sm font-extrabold">
+                        <a href="{{route('exam.download', ['uuid' => $uuid])}}" target="_blank"
+                               class="inline-flex items-center rounded-md border border-transparent bg-principal px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Descargar Certificado</a>
+                    </div>
+                    <div class="flex mt-28 justify-center text-sm font-extrabold">
                         Este examen está cifrado.
                     </div>
                     <div class="flex justify-center text-sm font-extrabold">

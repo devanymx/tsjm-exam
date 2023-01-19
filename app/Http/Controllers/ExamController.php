@@ -151,7 +151,8 @@ class ExamController extends Controller
         return view('exam.finished', [
             'user' => $user,
             'exam' => $exam,
-            'url' => $url
+            'url' => $url,
+            'uuid' => $exam->uuid
         ]);
     }
 
@@ -179,6 +180,7 @@ class ExamController extends Controller
             'exam' => $exam,
             'url' => $url
         ];
+
 
         $pdf = PDF::loadView('exam.certificate', $data);
 

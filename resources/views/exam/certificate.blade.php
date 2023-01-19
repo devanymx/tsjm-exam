@@ -1,41 +1,64 @@
-<x-guest-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            ¡Has finalizado!
-        </h2>
-    </x-slot>
-
-    <div class="py-12 h-full">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-white border-b border-gray-200 h-full">
-                    <div class="w-full mt-8">
-                        <div class="float-left">
-                            <img src="{{ asset('images/tsj.jpg') }}" width="100px" alt="Logo del Tribunal Superior de Justicia de Morelos">
-                        </div>
-                        <div class="float-right">
-                            <div class="flex justify-center text-sm font-extrabold">
-                                {!! QrCode::size(100)->backgroundColor(255,255,255)->generate($url) !!}
-                            </div>
-                            <div class="flex justify-center text-sm font-extrabold">
-                                (QR de cifrado)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center mt-44 mb-10 text-2xl font-bold">
-                        ¡Felicidades {{$user->name}}, has finalizado tu examen!
-                    </div>
-                    <div class="flex mt-28 justify-center text-sm font-extrabold">
-                        Este examen está cifrado bajo una llave de dos partes, solamente tú y la persona con quien lo compartas tendrán acceso a tu calificación.
-                    </div>
-                    <div class="flex justify-center text-sm font-extrabold">
-                        Para verificar la veracidad de este certificado, escanea el código QR o ingresa al enlace:
-                    </div>
-                    <div class="flex mb-28 justify-center text-sm font-extrabold">
-                        <a href="{{$url}}">{{$url}}</a>
-                    </div>
-                </div>
-            </div>
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            padding: .5rem;
+        }
+        * {
+            font-family: sans-serif;
+        }
+        .w-100{
+            width: 100%!important;
+        }
+        .w-50{
+            width: 50%!important;
+        }
+        .text-center{
+            text-align: center;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="wrapper" style="display: flex;">
+        <div class="" style="float: left;">
+            <img src="{{ asset('images/logo.png') }}" width="160px" alt="Logo del Tribunal Superior de Justicia de Morelos">
+        </div>
+        <div class="" style="padding-left: 1rem; padding-top:5rem;  align-content: center;">
+            H. TRIBUNAL SUPERIOR DE JUSTICIA DEL ESTADO DE MORELOS.
         </div>
     </div>
-</x-guest-layout>
+    <div class="w-100" style="padding-top:13rem; margin-left: 80px;  ">
+        Por este medio se certifica que el usuario {{$user->name}} concretó su <br><b>Examen de oposición para Juez de primera instancia</b>
+    </div>
+    <div class="w-100" style="padding-top:.3rem; margin-left: 80px;  ">
+        @php
+            \Carbon\Carbon::setUTF8(true);
+            \Carbon\Carbon::setLocale(config('app.locale'));
+            setlocale(LC_ALL, 'es_MX', 'es', 'ES', 'es_MX.utf8');
+                    $date = new \Carbon\Carbon($exam->finished_at);
+                    $formatedDate = $date->isoFormat('MMMM Do YYYY, h:mm:ss a');
+        @endphp
+        Con fecha de finalización en: {{$formatedDate}}
+    </div>
+    <div class="w-100" style="padding-top:.3rem; margin-left: 80px;  ">
+        Teniendo una duración de resolución de: {{$exam->time}}
+    </div>
+    <div style="display: flex; padding-bottom: 10rem; padding-left: 80px;">
+        <div class="w-50" style="padding-top:15rem; float: left;">
+            Firma del usuario
+        </div>
+        <div class="w-50" style="padding-top:15rem; float: right;">
+            Firma del aplicador
+        </div>
+    </div>
+    <div class="w-100" style="padding-top:20rem; margin-left: 80px;  ">
+        La veracidad de este certificado se puede comprobar en:
+    </div>
+    <div class="w-100" style="padding-top:.3rem; margin-left: 80px;  ">
+        <a href="{{$url}}">{{$url}}</a>
+    </div>
+</body>
+</html>
