@@ -16,6 +16,8 @@
                               class="inline-flex items-center border border-gray-300 bg-amber-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-secondary hover:text-white focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"> Regular </a>
                       <a href="{{route('dashboard', ['score' => 'bad', 'filter' => true])}}"
                               class="inline-flex items-center rounded-r-md border border-gray-300 bg-red-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-secondary hover:text-white focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">Mal</a>
+                        <a href="{{route('dashboard', ['score' => 'done', 'filter' => true])}}"
+                           class="inline-flex items-center rounded-r-md border border-gray-300 bg-slate-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-secondary hover:text-white focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">Resueltos</a>
                     </span>
                     <div class="inline-flex rounded-md shadow-sm mr-5">
                         <div class="mt-1">

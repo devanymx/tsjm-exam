@@ -85,6 +85,11 @@ class AdminController extends Controller
                         $filteredUsers[] = $user;
                     }
                 }
+                if ($request->query($filterKey) == 'done'){
+                    if ($user->exam->score > 0){
+                        $filteredUsers[] = $user;
+                    }
+                }
             }
         }
         return $filteredUsers;
