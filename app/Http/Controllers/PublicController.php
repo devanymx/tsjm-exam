@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\AnswersImport;
 use App\Imports\QuestionsImport;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -46,4 +47,13 @@ class PublicController extends Controller
         return redirect()->back();
     }
 
+    public function importViewu(Request $request){
+        return view('importu');
+    }
+
+    public function importu(Request $request){
+        Excel::import(new UsersImport(),
+            $request->file('file')->store('files'));
+        return redirect()->back();
+    }
 }

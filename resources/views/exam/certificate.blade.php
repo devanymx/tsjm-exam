@@ -46,6 +46,9 @@
     <div class="w-100" style="padding-top:.3rem; margin-left: 80px;  ">
         Teniendo una duración de resolución de: {{$exam->time}}
     </div>
+    <div class="w-100" style="padding-top:.3rem; margin-left: 80px;  ">
+        Calificación total: {{$exam->score}} / 100
+    </div>
     <div style="display: flex; padding-bottom: 10rem; padding-left: 80px;">
         <div class="w-50" style="padding-top:15rem; float: left;">
             Firma del usuario

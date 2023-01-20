@@ -31,8 +31,10 @@ Route::get('/exam/download/{uuid}',[ExamController::class,'downloadCertificate']
 
 Route::get('/answers-import',[PublicController::class, 'importViewa'])->name('import-view-a');
 Route::get('/questions-import',[PublicController::class, 'importViewq'])->name('import-view-q');
+Route::get('/users-import',[PublicController::class, 'importViewu'])->name('import-view-u');
 Route::post('/a-import',[PublicController::class, 'importa'])->name('import-a');
 Route::post('/q-import',[PublicController::class, 'importq'])->name('import-q');
+Route::post('/u-import',[PublicController::class, 'importu'])->name('import-u');
 
 
 Route::middleware([
