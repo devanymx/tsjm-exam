@@ -23,7 +23,13 @@ class UsersImport implements ToCollection
             User::create([
                 'name' => $row[2],
                 'email' => $row[3],
-                'password' => Hash::make($row[1])
+                'password' => Hash::make($row[1]),
+                'email_verified_at' => now(),
+                'two_factor_secret' => null,
+                'two_factor_recovery_codes' => null,
+                'remember_token' => Str::random(10),
+                'profile_photo_path' => null,
+                'current_team_id' => null,
             ]);
         }
     }
