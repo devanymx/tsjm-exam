@@ -57,7 +57,7 @@ class ExamController extends Controller
 
     public function answerExam(Request $request){
         $user = Auth::user();
-        //Do the permission check to avoid forbidden consults.
+        /* Checking if the user has the permission to access the route. */
         $token = $this->checkPermissions('exam.answer');
         if (!$token) return redirect()->route('forbidden');
 
@@ -121,6 +121,8 @@ class ExamController extends Controller
         //Do the permission check to avoid forbidden consults.
         $token = $this->checkPermissions('exam.finish');
         if (!$token) return redirect()->route('forbidden');
+
+        PublicController::CheckUser();
 
         $exam = $user->exam;
         $now = Carbon::now();

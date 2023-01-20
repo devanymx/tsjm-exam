@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\AnswersImport;
 use App\Imports\QuestionsImport;
 use App\Imports\UsersImport;
+use App\Models\Uuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
