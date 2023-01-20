@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Question;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +19,7 @@ class UsersImport implements ToCollection
     */
     public function collection(Collection $rows)
     {
+        $team = Team::find(1);
         foreach ($rows as $row)
         {
             User::create([
@@ -29,8 +31,8 @@ class UsersImport implements ToCollection
                 'two_factor_recovery_codes' => null,
                 'remember_token' => Str::random(10),
                 'profile_photo_path' => null,
-                'current_team_id' => null,
-            ]);
+                'current_team_id' => 1,
+            ])->teams()->attach($team, ['role' => 'user']);
         }
     }
 }

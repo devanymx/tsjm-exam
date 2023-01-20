@@ -25,34 +25,5 @@ class DatabaseSeeder extends Seeder
         $user->current_team_id = $team->id;
         $user->save();
 
-        $user = User::factory()->create();
-        $user->current_team_id = $team->id;
-        $user->save();
-        $user->teams()->attach($team, ['role' => 'user']);
-
-        $user = User::factory()->create();
-        $user->current_team_id = $team->id;
-        $user->save();
-        $user->teams()->attach($team, ['role' => 'user']);
-
-        $user = User::factory()->create();
-        $user->current_team_id = $team->id;
-        $user->save();
-        $user->teams()->attach($team, ['role' => 'user']);
-
-        $user = User::factory()->create();
-        $user->current_team_id = $team->id;
-        $user->save();
-        $user->teams()->attach($team, ['role' => 'user']);
-
-        $user = User::factory()->create();
-        $user->current_team_id = $team->id;
-        $user->save();
-        $user->teams()->attach($team, ['role' => 'user']);
-
-        $user = User::factory()->create();
-        $user->current_team_id = $team->id;
-        $user->save();
-        $user->teams()->attach($team, ['role' => 'user']);
     }
 }
