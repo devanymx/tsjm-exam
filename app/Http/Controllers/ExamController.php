@@ -44,7 +44,8 @@ class ExamController extends Controller
         if (!$token) return redirect()->route('forbidden');
 
         if (count($user->questions) < 1){
-            $questions = Question::all()->random(100);
+            $userType = $user->type;
+            $questions = Question::where('type',$userType)->get()->random(100);
             $user->questions()->saveMany($questions);
         }
 
