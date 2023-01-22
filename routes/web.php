@@ -28,6 +28,7 @@ Route::get('/forbidden', [PublicController::class, 'defaultTemplate'])->name('fo
 //Verify
 Route::get('/verify/{uuid}',[ExamController::class,'verifyExam'])->name('exam.verify');
 Route::get('/exam/download/{uuid}',[ExamController::class,'downloadCertificate'])->name('exam.download');
+Route::get('/exam/auditory/{uuid}',[ExamController::class,'downloadAuditory'])->name('exam.auditory');
 
 Route::get('/answers-import',[PublicController::class, 'importViewa'])->name('import-view-a');
 Route::get('/questions-import',[PublicController::class, 'importViewq'])->name('import-view-q');

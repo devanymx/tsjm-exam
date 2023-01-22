@@ -10,6 +10,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Str;
+
 
 class ExamController extends Controller
 {
@@ -47,7 +50,7 @@ class ExamController extends Controller
 
         if (!$user->exam){
             $now = Carbon::now();
-            $exam = new UserExam(['started_at' => $now, 'user_id' => $user->id]);
+            $exam = new UserExam(['started_at' => $now, 'user_id' => $user->id, 'uuid' => Str::uuid()->toString()]);
             $user->exam()->save($exam);
         }
 
@@ -122,8 +125,6 @@ class ExamController extends Controller
         $token = $this->checkPermissions('exam.finish');
         if (!$token) return redirect()->route('forbidden');
 
-        PublicController::CheckUser();
-
         $exam = $user->exam;
         $now = Carbon::now();
         $exam->finished_at = $now;
@@ -187,6 +188,24 @@ class ExamController extends Controller
         $pdf = PDF::loadView('exam.certificate', $data);
 
         return $pdf->download('Certificado de '.$user->name.'.pdf');
+    }
+
+    public function downloadAuditory($uuid){
+        $exam = UserExam::where('uuid',$uuid)->with('user')->first();
+        $url = $_ENV['APP_URL'].'/verify/'.$uuid;
+        $user = User::find($exam->user_id);
+
+        $data = [
+            'user' => $user,
+            'exam' => $exam,
+            'url' => $url,
+            'questions' => $user->questions,
+        ];
+
+        $pdf = PDF::loadView('exam.auditory', $data);
+
+        return $pdf->download('Certificado de '.$user->name.'.pdf');
+
     }
 
     public function checkPermissions($permission){

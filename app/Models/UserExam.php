@@ -15,6 +15,7 @@ class UserExam extends Model
         'started_at',
         'time',
         'score',
+        'uuid'
     ];
 
     public function user(){

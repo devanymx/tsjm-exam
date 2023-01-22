@@ -64,7 +64,7 @@
                                                 <img class="h-12 w-12 rounded-full"
                                                      src="{{ $user->profile_photo_url() }}" alt="{{$user->name}}"/>
                                             </div>
-                                            <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                            <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4">
                                                 <div>
                                                     <p class="truncate text-sm font-medium text-principal">{{$user->name}}</p>
                                                     <p class="mt-2 flex items-center text-sm text-gray-500">
@@ -105,6 +105,13 @@
                                                                 </p>
                                                                 <p class="flex items-center text-sm text-gray-500">
                                                                     Calificación: {{$user->exam->score / 10}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="md:block">
+                                                            <div>
+                                                                <p class="text-sm text-gray-900 flex">
+                                                                    <a href="{{route('exam.auditory', ['uuid' => $user->exam->uuid])}}" target="_blank">Click para descargar examen</a>
                                                                 </p>
                                                             </div>
                                                         </div>
