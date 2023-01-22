@@ -23,6 +23,7 @@ class QuestionsImport implements ToCollection
                 'name' => $row[0],
                 'question' => $row[0],
                 'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[0]), 0, 5)), '-'),
+                'type' => $row[8]
             ]);
         }
     }

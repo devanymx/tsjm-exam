@@ -32,6 +32,7 @@ class UsersImport implements ToCollection
                 'remember_token' => Str::random(10),
                 'profile_photo_path' => null,
                 'current_team_id' => 1,
+                'type' => $row[4],
             ])->teams()->attach($team, ['role' => 'user']);
         }
     }
