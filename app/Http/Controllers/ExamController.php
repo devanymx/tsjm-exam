@@ -185,7 +185,6 @@ class ExamController extends Controller
             'url' => $url
         ];
 
-
         $pdf = PDF::loadView('exam.certificate', $data);
 
         return $pdf->download('Certificado de '.$user->name.'.pdf');

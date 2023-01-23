@@ -19,12 +19,14 @@ class QuestionsImport implements ToCollection
     {
         foreach ($rows as $row)
         {
-            Question::create([
-                'name' => $row[0],
-                'question' => $row[0],
-                'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[0]), 0, 5)), '-'),
-                'type' => $row[8]
-            ]);
+            if($row[0] != null){
+                Question::create([
+                    'name' => $row[0],
+                    'question' => $row[0],
+                    'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[0]), 0, 10)), '-'),
+                    'type' => $row[6]
+                ]);
+            }
         }
     }
 }

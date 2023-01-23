@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create(['email' => 'edreiccb@gmail.com']);
+        $user = User::factory()->create(['email' => 'edreiccb@gmail.com', 'type'=>'1']);
         //Create base team
         $team = Team::factory()->create(['name' => 'Users', 'personal_team' => false, 'user_id' => $user->id]);
         $user->current_team_id = $team->id;
