@@ -60,10 +60,6 @@
                                     @endphp
                                     <div class="block {{$classes}} flex items-center px-4 py-4 sm:px-6">
                                         <div class="flex min-w-0 flex-1 items-center">
-                                            <div class="flex-shrink-0">
-                                                <img class="h-12 w-12 rounded-full"
-                                                     src="{{ $user->profile_photo_url() }}" alt="{{$user->name}}"/>
-                                            </div>
                                             <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4">
                                                 <div>
                                                     <p class="truncate text-sm font-medium text-principal">{{$user->name}}</p>

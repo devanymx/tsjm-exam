@@ -9,16 +9,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <div class="flex justify-center pt-8 pb-24 text-2xl font-extrabold text-secondary">
+                    <div class="flex justify-center pt-8 pb-10 text-2xl font-extrabold text-secondary">
                         Examen de oposición para Juez de primera instancia
                     </div>
-                    <div class="flex justify-center text-2xl font-extrabold">
+                    <div class="flex justify-center text-xl font-extrabold">
                         ¡Bienvenido {{Auth::user()->name}}!
                     </div>
-                    <div class="flex justify-center mt-5 text-xl font-bold">
+                    <div class="flex justify-center text-center mt-5 text-sm font-bold">
+                        "Alcanzar el éxito debe basarse no solo en el deseo de una conquista personal
+                        <br> sino, también en la posibilidad de transformar la vida de otras personas.
+                        <br> No existe un ascensor que te lleve al éxito, hay que tomar las escaleras."
+                        <br><br>D. en D - Luis Jorge Gamboa Olea.
+
+                    </div>
+                    <div class="flex justify-center mt-8 text-xl font-bold">
                         Recuerda que solamente tienes 180 minutos para contestar.
                     </div>
-                    <div class="flex justify-center pb-16 text-2xl font-extrabold">
+                    <div class="flex justify-center pb-8 text-2xl font-extrabold">
                         ¡Una vez empezado, no hay vuelta atrás!
                     </div>
                     <div class="flex justify-center mt-5">

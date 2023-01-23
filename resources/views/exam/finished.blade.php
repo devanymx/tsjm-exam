@@ -25,17 +25,24 @@
                     <div class="flex justify-center mt-44 mb-10 text-2xl font-bold">
                         ¡Felicidades {{$user->name}}, has finalizado tu examen!
                     </div>
-                    <div class="flex mt-28 justify-center text-sm font-extrabold">
-                        <a href="{{route('exam.download', ['uuid' => $uuid])}}" target="_blank"
-                               class="inline-flex items-center rounded-md border border-transparent bg-principal px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Descargar Certificado</a>
+                    <div class="flex justify-center mt-8 text-xl font-bold">
+                        “La vida es mejor para quienes hacen lo posible para tener lo mejor”
                     </div>
-                    <div class="flex mt-28 justify-center text-sm font-extrabold">
+                    <div class="flex justify-center mb-10 text-xl font-bold">
+                        Muchas gracias.
+                    </div>
+                    <div class="flex mt-8 justify-center text-sm font-extrabold">
+                        <span class="inline-flex items-center rounded-md border border-transparent bg-principal px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Espera tu turno para seguir.
+                        </span>
+                    </div>
+                    <div class="flex mt-20 justify-center text-sm font-extrabold">
                         Este examen está cifrado.
                     </div>
                     <div class="flex justify-center text-sm font-extrabold">
                         Para verificar la veracidad de este certificado, escanea el código QR o ingresa al enlace:
                     </div>
-                    <div class="flex mb-28 justify-center text-sm font-extrabold">
+                    <div class="flex mb-20 justify-center text-sm font-extrabold">
                         <a href="{{$url}}">{{$url}}</a>
                     </div>
                 </div>
