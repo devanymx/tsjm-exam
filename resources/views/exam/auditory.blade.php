@@ -28,10 +28,10 @@
                             @foreach($question->answers as $answer)
                                 <div class="flex items-center">
                                     @php
-                                        $trys = $user->questionAnswers()->where('slug',$answer->slug)->get();
+                                        $trys = $user->questionAnswers()->where('question_answers.id',$answer->id)->get();
                                     @endphp
-                                    <input id="{{$answer->slug}}" value="{{$answer->slug}}" name="{{$question->slug}}" @checked(count($trys)>0) type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                    <label for="{{$answer->slug}}" class="pointer-events-none ml-3 mr-3 block text-sm font-medium text-gray-700">{{$answer->answer}}</label>
+                                    <input id="{{$answer->id}}" value="{{$answer->id}}" name="{{$question->id}}" @checked(count($trys)>0) type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                    <label for="{{$answer->id}}" class="pointer-events-none ml-3 mr-3 block text-sm font-medium text-gray-700">{{$answer->answer}}</label>
                                 </div>
                             @endforeach
                         </div>

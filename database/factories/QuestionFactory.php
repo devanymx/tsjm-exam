@@ -14,7 +14,8 @@ class QuestionFactory extends Factory
         return [
             'name' => fake()->sentence(),
             'question' => fake()->sentence(),
-            'slug' => fake()->slug()
+            'slug' => fake()->slug(),
+            'type' => 1,
         ];
     }
 }

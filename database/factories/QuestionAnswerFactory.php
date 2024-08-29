@@ -16,7 +16,7 @@ class QuestionAnswerFactory extends Factory
             'name' => fake()->sentence(),
             'answer' => fake()->words(3, true),
             'slug' => fake()->slug(),
-            'validity' => fake()->boolean(),
+            'validity' => 0,
             'question_id' => Question::factory()
         ];
     }
