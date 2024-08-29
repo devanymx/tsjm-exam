@@ -27,20 +27,22 @@ class UsersImport implements ToCollection
         ];
         foreach ($rows as $row)
         {
-            $user = User::create([
-                'name' => $row[1],
-                'email' => $row[0],
-                'password' => Hash::make($row[2]),
-                'email_verified_at' => now(),
-                'two_factor_secret' => null,
-                'two_factor_recovery_codes' => null,
-                'remember_token' => Str::random(10),
-                'profile_photo_path' => null,
-                'current_team_id' => 1,
-                'type' => $types[$row[5]],
-            ]);
-            $user->save();
-            $user->teams()->attach($team, ['role' => 'user']);
+            if (isset($row[0])){
+                $user = User::create([
+                    'name' => $row[1],
+                    'email' => $row[0],
+                    'password' => Hash::make($row[2]),
+                    'email_verified_at' => now(),
+                    'two_factor_secret' => null,
+                    'two_factor_recovery_codes' => null,
+                    'remember_token' => Str::random(10),
+                    'profile_photo_path' => null,
+                    'current_team_id' => 1,
+                    'type' => $types[$row[5]],
+                ]);
+                $user->save();
+                $user->teams()->attach($team, ['role' => 'user']);
+            }
         }
     }
 }
