@@ -84,7 +84,7 @@ class ExamController extends Controller
         }
 
         $date = new Carbon($user->exam->started_at);
-        $finishDate = $date->addMinutes(180);
+        $finishDate = $date->addMinutes(180); // Timer de Exaamen.
         $shouldFinish = $finishDate->diffInMinutes(Carbon::now(),false);
 
 
@@ -107,7 +107,8 @@ class ExamController extends Controller
         $requestKeys = array_keys($answers);
         foreach ($requestKeys as $requestKey){
             if ($requestKey != '_token' && $requestKey != 'page'){
-                $answer = QuestionAnswer::where('slug', $answers[$requestKey])->first();
+                $answer = QuestionAnswer::where('id', $answers[$requestKey])->first();
+
                 $prevRegister = $user->questionAnswers()->where('question_answer_user.question_id', $answer->question->id)->get();
                 if ($prevRegister){
                     $user->questionAnswers()->detach($prevRegister);
