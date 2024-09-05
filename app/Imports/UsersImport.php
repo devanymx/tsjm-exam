@@ -27,7 +27,7 @@ class UsersImport implements ToCollection
         ];
         foreach ($rows as $row)
         {
-            if (isset($row[0])){
+            if (isset($row[0]) && $row[1] != 'NOMBRE') {
                 $user = User::create([
                     'name' => $row[1],
                     'email' => $row[0],
@@ -38,7 +38,7 @@ class UsersImport implements ToCollection
                     'remember_token' => Str::random(10),
                     'profile_photo_path' => null,
                     'current_team_id' => 1,
-                    'type' => $types[$row[5]],
+                    'type' => $types[$row[3]],
                 ]);
                 $user->save();
                 $user->teams()->attach($team, ['role' => 'user']);
