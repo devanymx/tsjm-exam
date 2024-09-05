@@ -32,15 +32,12 @@ class AnswersImport implements ToCollection
                     'extincion' => '3'
                 ];
 
-                $question = Question::where('name', $row[5])->first();
-                if (!$question) {
-                    $question = Question::create([
-                        'name' => $row[5],
-                        'question' => $row[5],
-                        'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[5]), 0, 10)), '-'),
-                        'type' => $types[$row[6]]
-                    ]);
-                }
+                $question = Question::create([
+                    'name' => $row[5],
+                    'question' => $row[5],
+                    'slug' => Str::slug(implode(' ', array_slice(explode(' ', $row[5]), 0, 10)), '-'),
+                    'type' => $types[$row[6]]
+                ]);
 
 
                 if ($row[0] != null) {
